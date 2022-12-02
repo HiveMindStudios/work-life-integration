@@ -1,5 +1,4 @@
 import discord
-import os
 import dotenv
 
 token = dotenv.get_key(".env","DISCORD_TOKEN")
@@ -18,6 +17,6 @@ async def on_ready():
         if message.author == client.user:
             return
 
-        print(message.content + message.author + message.created_at)
+        print(message.content + "  " + message.author.name + '#' + message.author.discriminator + "  " + str(message.created_at))
 
 client.run(token)
