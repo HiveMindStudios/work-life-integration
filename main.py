@@ -1,3 +1,6 @@
-import api.slack
-import api.discord
+import api.slackApi as slackApi
+import api.discordApi as discordApi
+import asyncio
+
+slackApi.entry()
 
