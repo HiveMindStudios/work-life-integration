@@ -1,6 +1,3 @@
-import Header from "./Header";
-import Sidebar from "./Sidebar";
-
 const Slack = () => {
   return (
     <div className="page-wrapper with-navbar with-sidebar" data-sidebar-type="overlayed">

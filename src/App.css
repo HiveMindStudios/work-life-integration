@@ -20,9 +20,9 @@
   width: 20px;
   filter: invert(1);
 }
-#root{
+#root {
   display: flex;
-  height:100vh;
+  height: 100vh;
 }
 
 .priority {
@@ -31,6 +31,9 @@
   align-items: center;
 }
 
-.priority * {
+.priority > img {
   margin: 20px;
+  filter: invert(1);
+  outline: 3px solid black;
+  border-radius: 100%;
 }

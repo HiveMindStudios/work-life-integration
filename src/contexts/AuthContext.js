@@ -14,7 +14,7 @@ export default function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
   const [loading, setLoading] = useState(true)
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   async function handleSignUp(email, password) {
     await createUserWithEmailAndPassword(auth, email, password);

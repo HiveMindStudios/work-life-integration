@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import AuthProvider from './contexts/AuthContext';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
 import Home from './pages/Home';
 import SignUp from './auth/SignUp';
 import SignIn from './auth/SignIn';
@@ -21,21 +20,21 @@ const App = () => {
       <BrowserRouter>
         <AuthProvider>
           <Sidebar />
-          <div style={{flex:1}}>
-          <Header headerTitle={"App Name"} />
-          <Routes>
-            <Route index element={<Home />} />
-            <Route path="/discord" element={<Discord />} />
-            <Route path="/slack" element={<Slack />} />
-            <Route path="/telegram" element={<Telegram />} />
-            
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="*" element={<NoPage />} />
-          </Routes>
+          <div style={{ flex: 1 }}>
+            <Header />
+            <Routes>
+              <Route index element={<Home />} />
+              <Route path="/discord" element={<Discord />} />
+              <Route path="/slack" element={<Slack />} />
+              <Route path="/telegram" element={<Telegram />} />
+
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/signin" element={<SignIn />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="*" element={<NoPage />} />
+            </Routes>
           </div>
-      
+
         </AuthProvider>
       </BrowserRouter>
     </ThemeProvider>
