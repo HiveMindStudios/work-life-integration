@@ -3,3 +3,4 @@
 /.vscode
 *.session
 test.json
+node_modules
