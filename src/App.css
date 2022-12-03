@@ -76,7 +76,7 @@
 }
 
 .message-bubble {
-  max-width: 50vh;
+  width: 90vh;
   border-radius: 10px;
   background-color: rgb(51, 155, 253);
   padding: 10px;
@@ -95,6 +95,9 @@
 
 .message-header * {
   margin: 0 3px 0 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .message-right {
@@ -104,11 +107,10 @@
 }
 
 .message-timestamp, .message-via {
-  font-size: .9em;
+  font-size: 14px;
 }
 
 .message-author {
-  font-size: 1.1em;
   font-weight: bold;
 }
 

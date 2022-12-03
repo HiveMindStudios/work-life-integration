@@ -12,7 +12,7 @@ export function Settings() {
 
   return (
     <Reorder.Group axis="y" values={items} onReorder={setItems}>
-      <h5>Set notification priority</h5>
+      <h5 className="">Set notification priority</h5>
       <div className="sidebar-divider"></div>
       {items.map((item, index) => (
         <Reorder.Item key={item} value={item} style={{ listStyle: 'none' }}>
