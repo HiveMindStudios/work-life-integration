@@ -1,13 +1,13 @@
 import discord
 import dotenv
 import json
+import requests
 
 token = dotenv.get_key(".env","DISCORD_TOKEN")
 intents = discord.Intents.default()
 intents.message_content = True
 
 client = discord.Client(intents=intents)
-#print(token)
 
 @client.event
 async def on_ready():
@@ -24,8 +24,8 @@ async def on_ready():
             "timestamp": message.created_at,
             "platform": "Discord"
         }
-       
-        messages.append(data) #todo append json serialized to list in main
+        requests.post('http://localhost:9999/loadMessages', {"data":data}, timeout=5)
+        
         print(message.content + "  " + message.author.name + '#' + message.author.discriminator + "  " + str(message.created_at))
 
 
