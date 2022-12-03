@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { auth } from '../firebase'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom'
 
 const AuthContext = React.createContext()
@@ -15,8 +16,7 @@ export default function AuthProvider({ children }) {
   const navigate = useNavigate();
 
   const handleSignUp = (email, password) => {
-    auth
-      .createUserWithEmailAndPassword(email, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then(userCredentials => {
         const user = userCredentials.user;
         console.log('Registered with:', user.email);
@@ -24,9 +24,9 @@ export default function AuthProvider({ children }) {
       .catch(error => alert(error.message))
   }
 
-  const handleLogin = (email, password) => {
-    auth
-      .signInWithEmailAndPassword(email, password)
+  const handleSignIn = (email, password) => {
+    console.log(email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then(userCredentials => {
         const user = userCredentials.user;
         console.log('Logged in with:', user.email);
@@ -48,7 +48,7 @@ export default function AuthProvider({ children }) {
 
   const value = {
     currentUser,
-    handleLogin,
+    handleSignIn,
     handleSignUp,
     handleSignOut
   }

@@ -4,8 +4,8 @@ import AuthProvider from './contexts/AuthContext';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Home from './pages/Home';
-import Login from './auth/Login';
-import SignOut from './auth/SignOut';
+import SignUp from './auth/SignIn';
+import SignIn from './auth/SignIn';
 import NoPage from './pages/NoPage';
 
 const App = () => {
@@ -14,8 +14,8 @@ const App = () => {
       <AuthProvider>
         <Routes>
           <Route index element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signout" element={<SignOut />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </AuthProvider>

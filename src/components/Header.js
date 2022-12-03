@@ -1,11 +1,9 @@
-import { FaBars } from 'react-icons/fa';
+import halfmoon from 'halfmoon';
 
 const Header = ({ headerTitle }) => {
   return (
     <nav className="navbar">
-      <button className="btn btn-action" type="button">
-        <FaBars />
-      </button>
+      <div class="sidebar-overlay" onClick={halfmoon.toggleSidebar()}></div>
       <span>{headerTitle}</span>
     </nav>
   )
