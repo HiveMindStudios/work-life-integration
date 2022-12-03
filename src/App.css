@@ -4,7 +4,33 @@
   align-items: center;
   flex-direction: column;
 }
-
 .wrapper {
   height: 100vh;
+}
+
+.p404 {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.link-icon {
+  width: 20px;
+  filter: invert(1);
+}
+#root{
+  display: flex;
+  height:100vh;
+}
+
+.priority {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.priority * {
+  margin: 20px;
 }

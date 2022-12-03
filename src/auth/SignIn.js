@@ -1,39 +1,34 @@
 import React, { useContext, useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
-export default function SignUp() {
+export default function SignIn() {
   const { handleSignIn } = useAuth();
-
-  const navigate = useNavigate();
-
-  const [validation, setValidation] = useState("");
-
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
   const email = useRef()
   const password = useRef()
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  async function handleClick() {
     try {
-      await handleSignIn(
-        email, password
-      );
-      // formRef.current.reset();
-      setValidation("");
-      // console.log(cred);
-      navigate("/");
+      setError("")
+      setLoading(true)
+      await handleSignIn(email.current.value, password.current.value)
+      navigate('/')
     } catch {
-      setValidation("Wopsy, email and/or password incorrect")
+      setError("Failed to create an account")
     }
-  };
-
+    setLoading(false)
+  }
+  
   return (
     <div className="wrapper">
       <div className="input-group signin-form">
         <h4>Sign in</h4>
         <input type="text" className="form-control" placeholder="email@example.com" ref={email} />
-        <input type="text" className="form-control" placeholder="password" ref={password} />
-        <button className="btn btn-primary" type="button" onClick={e => handleSubmit(e)}>Sign in</button>
+        <input type="password" className="form-control" placeholder="password" ref={password} />
+        <button className="btn btn-primary" type="button" onClick={handleClick}>Sign in</button>
       </div>
     </div>
   );

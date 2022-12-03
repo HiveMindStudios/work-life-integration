@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { auth } from '../firebase'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+
 
 const AuthContext = React.createContext()
 
@@ -15,27 +16,17 @@ export default function AuthProvider({ children }) {
 
   const navigate = useNavigate();
 
-  const handleSignUp = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(userCredentials => {
-        const user = userCredentials.user;
-        console.log('Registered with:', user.email);
-      })
-      .catch(error => alert(error.message))
+  async function handleSignUp(email, password) {
+    await createUserWithEmailAndPassword(auth, email, password);
   }
 
-  const handleSignIn = (email, password) => {
-    console.log(email, password)
-    signInWithEmailAndPassword(auth, email, password)
-      .then(userCredentials => {
-        const user = userCredentials.user;
-        console.log('Logged in with:', user.email);
-        navigate("/");
-      })
-      .catch(error => alert(error.message))
+  async function handleSignIn(email, password) {
+    await signInWithEmailAndPassword(auth, email, password);
   }
 
-  const handleSignOut = () => auth.signOut()
+  async function handleSignOut() {
+    await auth.signOut();
+  }
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
