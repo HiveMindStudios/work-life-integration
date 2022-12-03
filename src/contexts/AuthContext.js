@@ -45,7 +45,7 @@ export default function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider value={{...value, counter: 0}}>
       {!loading && children}
     </AuthContext.Provider>
   )

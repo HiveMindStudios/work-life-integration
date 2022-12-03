@@ -12,15 +12,16 @@ import { motion } from 'framer-motion';
 
 
 const Sidebar = () => {
-  const { currentUser, handleSignOut } = useAuth()
+  const { currentUser, handleSignOut, counter } = useAuth()
 
   return (
     <>
       <div className="sidebar" style={{ position: "static" }}>
         <div className="sidebar-divider"></div>
         <Link className='sidebar-link sidebar-link-with-icon' to="/">
-          <motion.span whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} className="sidebar-icon bg-primary text-white rounded-circle">
+          <motion.span whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} className="sidebar-icon bg-primary text-white rounded-circle notify-me">
             <img src={All} className="link-icon" alt="All applications" title="All messenges" />
+            <div className="counter-me">{counter}</div>
           </motion.span>
           All messenges
         </Link>

@@ -4,6 +4,9 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import './App.css'
+import AuthProvider from './contexts/AuthContext';
+import { BrowserRouter } from 'react-router-dom';
+import ThemeProvider from './contexts/ThemeContext';
 
 require("halfmoon/css/halfmoon-variables.min.css");
 const halfmoon = require("halfmoon");
@@ -12,14 +15,20 @@ halfmoon.onDOMContentLoaded();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+        <ThemeProvider>
+      <BrowserRouter>
+        <AuthProvider>
     <App />
+    </AuthProvider>
+    </BrowserRouter>
+    </ThemeProvider>
   </React.StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://cra.link/PWA
-serviceWorkerRegistration.unregister();
+serviceWorkerRegistration.register();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -23,6 +23,7 @@
 #root {
   display: flex;
   height: 100vh;
+  overflow-y: hidden;
 }
 
 .priority {
@@ -36,4 +37,81 @@
   filter: invert(1);
   outline: 3px solid black;
   border-radius: 100%;
+}
+.notify-me{
+  position: relative;
+}
+.counter-me{
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  background: #d81616;
+  width:25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.profile-hdr {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.profile-hdr > span {
+  font-size: 19px;
+}
+
+.profile-img {
+  margin-right: 5px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 100%;
+  filter: invert(1);
+  width: 28px;
+  height: 28px;
+}
+
+.message-bubble {
+  max-width: 50vh;
+  border-radius: 10px;
+  background-color: rgb(51, 155, 253);
+  padding: 10px;
+  display: flex;
+}
+
+.message-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 100%;
+}
+
+.message-header {
+  display: flex;
+}
+
+.message-header * {
+  margin: 0 3px 0 0;
+}
+
+.message-right {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.message-timestamp, .message-via {
+  font-size: .9em;
+}
+
+.message-author {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.content-wrapper > *{
+  margin: 10px 0;
 }

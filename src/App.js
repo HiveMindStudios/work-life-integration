@@ -1,31 +1,31 @@
 import React from 'react';
 import './App.css';
-import AuthProvider from './contexts/AuthContext';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import SignUp from './auth/SignUp';
 import SignIn from './auth/SignIn';
 import NoPage from './pages/NoPage';
 import { Settings } from './pages/Settings';
-import ThemeProvider from './contexts/ThemeContext';
 import Discord from './components/Discord';
 import Slack from './components/Slack';
 import Telegram from './components/Telegram';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
+import { useAuth } from './contexts/AuthContext';
+import { Navigate } from 'react-router-dom';
 
 const App = () => {
+  const {currentUser} = useAuth()
+
   return (
-    <ThemeProvider>
-      <BrowserRouter>
-        <AuthProvider>
+    <React.Fragment>
           <Sidebar />
           <div style={{ flex: 1 }}>
             <Header />
             <Routes>
-              <Route index element={<Home />} />
-              <Route path="/discord" element={<Discord />} />
-              <Route path="/slack" element={<Slack />} />
+              <Route index element={<ProtectedRoute user={currentUser}><Home /></ProtectedRoute>} />
+              <Route path="/discord" element={<ProtectedRoute user={currentUser}><Discord /></ProtectedRoute>} />
+              <Route path="/slack" element={<ProtectedRoute user={currentUser}><Slack /></ProtectedRoute>} />
               <Route path="/telegram" element={<Telegram />} />
 
               <Route path="/settings" element={<Settings />} />
@@ -34,11 +34,16 @@ const App = () => {
               <Route path="*" element={<NoPage />} />
             </Routes>
           </div>
-
-        </AuthProvider>
-      </BrowserRouter>
-    </ThemeProvider>
+  </React.Fragment>
   )
 }
 
 export default App;
+
+const ProtectedRoute = ({ user, children }) => {
+  if (!user) {
+    return <Navigate to="/signup" replace />;
+  }
+
+  return children;
+};

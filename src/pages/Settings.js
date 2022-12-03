@@ -12,6 +12,8 @@ export function Settings() {
 
   return (
     <Reorder.Group axis="y" values={items} onReorder={setItems}>
+      <h5>Set notification priority</h5>
+      <div className="sidebar-divider"></div>
       {items.map((item, index) => (
         <Reorder.Item key={item} value={item} style={{ listStyle: 'none' }}>
           <div className="priority" style={{ backgroundColor: setColorHSLA(theme + 30 * index), margin: '3px', height: '100px', cursor: "pointer" }}>
