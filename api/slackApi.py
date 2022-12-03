@@ -4,10 +4,11 @@ from slack_sdk.web.async_client import AsyncWebClient
 import asyncio
 import requests
 
-lastts = 0
 token = dotenv.get_key(".env", "SLACK_TOKEN")
 client = AsyncWebClient(token)
 async def main():
+    lastts = 0
+    print("Running slack main")
     convId = await client.conversations_list()
     conv = None
     convHistory = []
@@ -19,8 +20,9 @@ async def main():
     message = await client.conversations_history(channel=conv)
     convHistory = message["messages"]
     for m in convHistory:
-        if lastts > float(m["ts"]):
+        if lastts >= float(m["ts"]):
             break
+        lastts = float(m["ts"])
         user = m["user"]
         userName = await client.users_info(user=user)
         data = {
@@ -30,10 +32,11 @@ async def main():
             "platform": "Slack"
         }
         try:
+            print(data)
             requests.post('http://localhost:65432/loadMessages', {"data":data}, timeout=5)
         except:
             pass
-        await asyncio.sleep(15)
+    await asyncio.sleep(15)
 loop = asyncio.new_event_loop()
 loop.create_task(main())
 loop.run_forever()
