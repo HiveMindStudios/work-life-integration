@@ -13,6 +13,7 @@ import { useTheme } from '../context/ThemeContext';
 import Main from './Main';
 import SignUp from '../components/auth/SignUp';
 import Header from '../components/Header';
+import Settings from './Settings';
 
 const Wrapper = () => {
 
@@ -39,6 +40,7 @@ const Wrapper = () => {
       <Header backBtn={false} title="title" />
       <Stack.Navigator initialRouteName='SignUp'>
         <Stack.Screen component={Main} name="Main" options={{headerShown: false}} />
+        <Stack.Screen component={Settings} name="Settings" options={{headerShown: false}} />
         <Stack.Screen component={SignUp} name="SignUp" options={{headerShown: false}} />
       </Stack.Navigator>
     </PaperProvider>
