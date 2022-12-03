@@ -5,6 +5,10 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+require("halfmoon/css/halfmoon-variables.min.css");
+const halfmoon = require("halfmoon");
+halfmoon.onDOMContentLoaded();
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
