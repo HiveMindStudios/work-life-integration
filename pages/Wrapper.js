@@ -30,16 +30,16 @@ const Wrapper = () => {
   const dark = colorScheme === 'dark';
 
   return (
-    <PaperProvider>
+    <PaperProvider theme={theme}>
       <StatusBar
         style={dark ? 'light' : 'dark'}
         animated
+        backgroundColor={theme.colors.background}
       />
       <Header backBtn={false} title="title" />
       <Stack.Navigator initialRouteName='SignUp'>
-        <Stack.Screen component={Main} name="Main" />
-        <Stack.Screen component={SignUp} name="SignUp" />
-        {/* options={{headerShown: false}} */}
+        <Stack.Screen component={Main} name="Main" options={{headerShown: false}} />
+        <Stack.Screen component={SignUp} name="SignUp" options={{headerShown: false}} />
       </Stack.Navigator>
     </PaperProvider>
   )

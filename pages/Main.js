@@ -2,8 +2,11 @@ import { Button, Text } from "react-native-paper";
 import Header from '../components/Header';
 import SideBar from '../components/SideBar';
 import { StyleSheet, useColorScheme, View } from 'react-native';
+import { useTheme } from "../context/ThemeContext";
 
-const Main = ({ theme }) => {
+const Main = () => {
+
+  const { theme } = useTheme();
 
   const styles = StyleSheet.create({
     container: {
