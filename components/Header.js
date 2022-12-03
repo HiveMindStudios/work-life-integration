@@ -11,8 +11,6 @@ const Header = ({ backBtn, onBackBtn, title, menuBtn, onMenuBtn, statusBarHeight
       {backBtn ? <Appbar.BackAction onPress={() => onBackBtn()} /> : null}
       <Appbar.Content title={i18n.t(title)} style={{ flex: 1 }} />
       {menuBtn ? <Appbar.Action icon="cog-outline" onPress={() => onMenuBtn()} /> : null}
-      <Settings />
-
     </Appbar.Header>
   );
 };

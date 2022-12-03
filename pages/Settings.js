@@ -1,8 +1,11 @@
 import { Text } from "react-native-paper";
+import { ScrollView } from "react-native-web";
 
 const Settings = () => {
   return (
-    <Text>Settings</Text>
+    <ScrollView>
+      <Text>Test</Text>
+    </ScrollView>
   )
 }
 
