@@ -41,8 +41,7 @@ const App = () => {
           <Route path="/discord" element={<ProtectedRoute user={currentUser}><Discord /></ProtectedRoute>} />
           <Route path="/slack" element={<ProtectedRoute user={currentUser}><Slack /></ProtectedRoute>} />
           <Route path="/telegram" element={<ProtectedRoute user={currentUser}><Telegram /></ProtectedRoute>} />
-
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/settings" element={<ProtectedRoute user={currentUser}><Settings /></ProtectedRoute>} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="*" element={<NoPage />} />
