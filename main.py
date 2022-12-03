@@ -2,6 +2,7 @@ import api.slackApi as slackApi
 import api.discordApi as discordApi
 from flask import Flask, json
 import gnupg
+import asyncio
 users=[]
 messages = []
 companies = [{"id": 1, "name": "Company One"}, {"id": 2, "name": "Company Two"}]
@@ -25,6 +26,6 @@ if __name__ == '__main__':
     api.run()
 
 async def main():
-    await slackApi.main()
-    await discordApi.main()
+    asyncio.new_event_loop().run_until_complete(await slackApi.main())
+    asyncio.new_event_loop().run_until_complete(await discordApi.main())
 

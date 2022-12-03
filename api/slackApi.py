@@ -2,7 +2,7 @@ import dotenv
 import os
 from slack_sdk.web.async_client import AsyncWebClient
 import asyncio
-
+lastts = 0
 token = dotenv.get_key(".env", "SLACK_TOKEN")
 client = AsyncWebClient(token)
 async def main():
@@ -10,13 +10,26 @@ async def main():
     conv = None
     convHistory = []
     channel_name = "webapp"
-    for result in convId:
-        if conv is not None:
-            break
-        for channel in result["channels"]:
-            if channel["name"] == channel_name:
-                conv = channel["id"]
+    for channel in convId["channels"]:
+        if channel["name"] == channel_name:
+            conv = channel["id"]
+    await client.conversations_join(channel=conv)
     message = await client.conversations_history(channel=conv)
     convHistory = message["messages"]
-    return
-asyncio.run(main())
+    for m in convHistory:
+        print(m)
+        if lastts >= float(m["ts"]):
+            break
+        user = m["user"]
+        data = {
+            "from": user,
+            "content": m["text"],
+            "timestamp": m["ts"],
+            "platform": "Slack"
+        }
+        messages.append(data)
+        asyncio.sleep(600)
+loop = asyncio.new_event_loop()
+loop.create_task(main())
+loop.run_forever()
+# client.apps_connections_open(dotenv.get_key(".env","SLACK_APP_TOKEN"))
