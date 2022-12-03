@@ -1,6 +1,20 @@
 import api.slackApi as slackApi
 import api.discordApi as discordApi
 import asyncio
+from flask import Flask, json
 
-slackApi.entry()
+companies = [{"id": 1, "name": "Company One"}, {"id": 2, "name": "Company Two"}]
+
+api = Flask(__name__)
+
+@api.route('/companies', methods=['GET'])
+def get_companies():
+  return json.dumps(companies)
+
+if __name__ == '__main__':
+    api.run()
+
+async def main():
+    await slackApi.main()
+    await discordApi.main()
 
