@@ -24,7 +24,7 @@ async def on_ready():
             "timestamp": message.created_at,
             "platform": "Discord"
         }
-        requests.post('http://localhost:9999/loadMessages', {"data":data}, timeout=5)
+        requests.post('http://localhost:65432/loadMessages', {"data":data}, timeout=5)
         
         print(message.content + "  " + message.author.name + '#' + message.author.discriminator + "  " + str(message.created_at))
 

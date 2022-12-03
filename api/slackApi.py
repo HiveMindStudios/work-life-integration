@@ -7,7 +7,6 @@ import requests
 lastts = 0
 token = dotenv.get_key(".env", "SLACK_TOKEN")
 client = AsyncWebClient(token)
-
 async def main():
     convId = await client.conversations_list()
     conv = None
@@ -20,17 +19,21 @@ async def main():
     message = await client.conversations_history(channel=conv)
     convHistory = message["messages"]
     for m in convHistory:
-        if lastts >= float(m["ts"]):
+        if lastts > float(m["ts"]):
             break
         user = m["user"]
+        userName = await client.users_info(user=user)
         data = {
-            "from": user,
+            "from": userName["user"]["name"],
             "content": m["text"],
             "timestamp": m["ts"],
             "platform": "Slack"
         }
-        requests.post('http://localhost:9999/loadMessages', {"data":data}, timeout=5)
-        asyncio.sleep(600)
+        try:
+            requests.post('http://localhost:65432/loadMessages', {"data":data}, timeout=5)
+        except:
+            pass
+        await asyncio.sleep(15)
 loop = asyncio.new_event_loop()
 loop.create_task(main())
 loop.run_forever()
