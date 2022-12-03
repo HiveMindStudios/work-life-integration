@@ -1,9 +1,5 @@
-import {
-  Provider as PaperProvider,
-  MD3DarkTheme,
-  MD3LightTheme,
-} from 'react-native-paper';
-import { StyleSheet, useColorScheme } from 'react-native';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { useColorScheme } from 'react-native';
 import { useEffect } from 'react';
 import * as NavigationBar from 'expo-navigation-bar';
 import { StatusBar } from 'expo-status-bar';
@@ -25,13 +21,14 @@ const Wrapper = () => {
 
   const Stack = createNativeStackNavigator();
 
-  const {theme} = useTheme();
+  const { theme } = useTheme();
 
   const colorScheme = useColorScheme();
   const dark = colorScheme === 'dark';
 
   return (
     <PaperProvider theme={theme}>
+
       <StatusBar
         style={dark ? 'light' : 'dark'}
         animated
@@ -39,9 +36,9 @@ const Wrapper = () => {
       />
       <Header backBtn={false} title="title" />
       <Stack.Navigator initialRouteName='SignUp'>
-        <Stack.Screen component={Main} name="Main" options={{headerShown: false}} />
-        <Stack.Screen component={Settings} name="Settings" options={{headerShown: false}} />
-        <Stack.Screen component={SignUp} name="SignUp" options={{headerShown: false}} />
+        <Stack.Screen component={Main} name="Main" options={{ headerShown: false }} />
+        <Stack.Screen component={Settings} name="Settings" options={{ headerShown: false }} />
+        <Stack.Screen component={SignUp} name="SignUp" options={{ headerShown: false }} />
       </Stack.Navigator>
     </PaperProvider>
   )

@@ -1,37 +1,27 @@
-import { Button, Text } from "react-native-paper";
-import Header from '../components/Header';
+import React, { useEffect, useState } from 'react';
 import SideBar from '../components/SideBar';
-import { StyleSheet, useColorScheme, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useTheme } from "../context/ThemeContext";
+import SignOut from "../components/auth/SignOut";
+import Messages from '../components/Messages';
 
 const Main = () => {
-
   const { theme } = useTheme();
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: theme.colors.background,
-    },
-    settingsModal: {
-      flex: 1,
-      backgroundColor: theme.colors.background,
-    },
-    addEventModal: {
-      backgroundColor: theme.colors.background,
-      padding: 20,
-      margin: 20,
-    },
-  });
-
   return (
-    <View style={styles.container}>
-      <Header backBtn={false} title="title" />
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <SideBar />
-
-      <Button>Hello</Button>
+      <Messages />
+      <SignOut />
     </View>
   );
 }
 
 export default Main;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 5
+  },
+});
